@@ -1,8 +1,6 @@
 {
   "extends": "./tsconfig.lib.json",
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
-    "fullTemplateTypeCheck": true,
     "compilationMode": "partial"
   }
 }

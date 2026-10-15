@@ -29,7 +29,8 @@ export const enum ReportType {
 @Component({
   selector: 'ngx-powerbi-component',
   template: '<div #ngxPowerBiIFrame style="height:100%; width: 100%;"></div>',
-  styles: []
+  styles: [],
+  standalone: false,
 })
 export class NgxPowerBiComponent implements AfterViewInit, OnChanges, OnDestroy {
   // Public properties
@@ -160,7 +161,8 @@ export class NgxPowerBiComponent implements AfterViewInit, OnChanges, OnDestroy 
     // For null arguments - use the initial value
     // For specified arguments - use the current value
     return {
-      type: type ? type : this.type ? this.type : ReportType.Report,
+      // powerbi-client matches the type case-sensitively against lowercase names ('report', ...)
+      type: (type ? type : this.type ? this.type : ReportType.Report).toLowerCase(),
       embedUrl: embedUrl ? embedUrl : this.embedUrl,
       accessToken: accessToken ? accessToken : this.accessToken,
       tokenType: tokenType
